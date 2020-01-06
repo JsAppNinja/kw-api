@@ -1,0 +1,700 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Swagger KW-API",
+        "description": "This is KW-API messaging middleware for dispatch data to services / applications",
+        "contact": {
+            "email": "izhur2001@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/api_users": {
+            "get": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "list of api users",
+                "description": "",
+                "operationId": "list api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page data",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "Create api user",
+                "description": "",
+                "operationId": "create api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "formData",
+                        "description": "apiKey of api user",
+                        "required": true,
+                        "type": "string",
+                        "default": "1234567890abcdef"
+                    },
+                    {
+                        "name": "company",
+                        "in": "formData",
+                        "description": "company user of api key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "application",
+                        "in": "formData",
+                        "description": "application name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api_users/{id}": {
+            "get": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "show detail of api user",
+                "description": "",
+                "operationId": "get api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of api user",
+                        "required": true,
+                        "type": "integer",
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "Update api user data",
+                "description": "",
+                "operationId": "update api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of api user",
+                        "required": true,
+                        "type": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "apiKey",
+                        "in": "formData",
+                        "description": "apiKey of api user",
+                        "required": true,
+                        "type": "string",
+                        "default": "1234567890abcdef"
+                    },
+                    {
+                        "name": "company",
+                        "in": "formData",
+                        "description": "company user of api key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "application",
+                        "in": "formData",
+                        "description": "application name",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "Delete api user",
+                "description": "",
+                "operationId": "delete api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of api user",
+                        "required": true,
+                        "type": "integer",
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/api_users/{id}/toggle": {
+            "get": {
+                "tags": [
+                    "apiUsers"
+                ],
+                "summary": "Toggle active status of api user",
+                "description": "",
+                "operationId": "toggle api_user",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of api user",
+                        "required": true,
+                        "type": "integer",
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "list event data",
+                "description": "",
+                "operationId": "list event",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page data",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        },
+        "/events/{eventId}": {
+            "get": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "show detail of event data",
+                "description": "",
+                "operationId": "show event",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "id of event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "update event data",
+                "description": "",
+                "operationId": "update event",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "id of event",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "object",
+                        "in": "formData",
+                        "description": "object of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "lead"
+                    },
+                    {
+                        "name": "action",
+                        "in": "formData",
+                        "description": "action of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "create"
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "version of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "1"
+                    },
+                    {
+                        "name": "jsonSchema",
+                        "in": "formData",
+                        "description": "json schema of data event that that needs to dispatch",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "delete event data",
+                "description": "",
+                "operationId": "delete event",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "description": "id of event",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        },
+        "/events/unsubscribe": {
+            "post": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "unsubscribe event data",
+                "description": "",
+                "operationId": "unsubscribe event",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "object",
+                        "in": "formData",
+                        "description": "object of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "lead"
+                    },
+                    {
+                        "name": "action",
+                        "in": "formData",
+                        "description": "action of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "create"
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "version of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "1"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        },
+        "/events/register": {
+            "post": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "Register an event from services / application publisher",
+                "description": "",
+                "operationId": "registerEvent",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "object",
+                        "in": "formData",
+                        "description": "object of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "lead"
+                    },
+                    {
+                        "name": "action",
+                        "in": "formData",
+                        "description": "action of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "create"
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "version of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "1"
+                    },
+                    {
+                        "name": "jsonSchema",
+                        "in": "formData",
+                        "description": "json schema of data event that that needs to dispatch",
+                        "required": true,
+                        "type": "string",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        },
+        "/events/subscribe": {
+            "post": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "subscribe an event to get data from publisher",
+                "description": "",
+                "operationId": "subscribeEvent",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "object",
+                        "in": "formData",
+                        "description": "object of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "lead"
+                    },
+                    {
+                        "name": "action",
+                        "in": "formData",
+                        "description": "action of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "create"
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "version of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "1"
+                    },
+                    {
+                        "name": "endPoint",
+                        "in": "formData",
+                        "description": "endPoint callback",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        },
+        "/events/add": {
+            "post": {
+                "tags": [
+                    "events"
+                ],
+                "summary": "add an event for dispatched to services / application subscriber",
+                "description": "",
+                "operationId": "addEvent",
+                "consumes": [
+                    "application/json",
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "object",
+                        "in": "formData",
+                        "description": "object of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "lead"
+                    },
+                    {
+                        "name": "action",
+                        "in": "formData",
+                        "description": "action of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "create"
+                    },
+                    {
+                        "name": "version",
+                        "in": "formData",
+                        "description": "version of event",
+                        "required": true,
+                        "type": "string",
+                        "default": "1"
+                    },
+                    {
+                        "name": "event",
+                        "in": "formData",
+                        "description": "Dispatched event data",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": [
+
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+
+    },
+    "securityDefinitions": {
+        "apiKey": {
+            "type": "apiKey",
+            "name": "apiKey",
+            "in": "header"
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

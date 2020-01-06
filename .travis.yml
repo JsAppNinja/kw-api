@@ -1,0 +1,135 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+  - hhvm
+
+addons:
+  apt:
+    packages:
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
+
+services:
+  - docker
+  - rabbitmq
+
+allow_failures:
+  - php: 7.0
+  - php: hhvm
+
+cache:
+  directories:
+    - laravel
+
+notifications:
+  slack:
+    rooms:
+      - keller-williams-team:4yNLqKZni0g9kIolz0H79gQt
+    on_success: always
+    on_failure: always
+    on_start: always
+
+# Only watch the master branch and tagged release.
+branches:
+ only:
+   - master
+   - /\d+\.\d+\.\d+/
+
+env:
+  global:
+    - DOCKER_VERSION=1.9.1  # Install Docker version 1.9.1
+    - secure: "1RnarXKDchksTnkU4W5ef/W13xTwZB0Bb4TdXDb18blezSbkbHW+1Vm7z+QFdtqZCBYivkWPT3K9yOiU0TQHcOxEM1PnaDVJqCmDTSrgVzNG+uPlitKc8glmYCnpRlpmBxMvuRKt8RwalY9G6KwUz0nF0yl09iCwdz1K29NztsWBreu3/tfdCsF/pwFVfIfdVlKfp3FMBt4+XJhUrV7i2OKjRKD0Rca9GOgAspMWRlEm3FfvWjJxQt+yButDGWnCxMFuIjtz6+yBxEk8ylnkNbgRUb1jFZETK77OsUvclWvqu+4D4AOU4pAwDc9LZFyzc1R/K0nTSilviwU0iq6uRQQztM8iHmssHnKoiYrez9NeotizASn/neEnKTDQE7kli3MwYQQgV5VhGec/0l0ROqALbRuhanQNMnb6GsVqHw+EERNPOiXMmnHjtCQHbxOH5KTgRVpidmmjW58uXEWdXc21HllaEMAv5jV9blFGrOVC74QoLK4p/8VwtjZYbvAkw8/vWHSpNNIX5jAbg10zwdp9huKUU255rpcW9aM6HWc7XUSxiwSZ3N1p5FCURNe/x3qV6x6X6JYS4AWLWxJgnQIoZe3ssMA4w2BVtKVV1BHGUOmZuozcWhcl/D2v4b8UcxtiyjT44ojfFcwoFUd5yu0fG1fivqsW1wHxft2dGRg=" # DOCKER_EMAIL
+    - secure: "vf6hP+kwoZecO0tjXYBqxBoAc0Ctq2xE96T2imSdfOPJRz3dT4vsuQIVRDMUYgNhNXqKiZNuGYJGiaFJZxUKwC0vC6Wii+wV5QdfCypy9ps9UHiZjuPzmHK3stLn7H4KcO7z/JFrgvg2iWtyOmSjJ3898Di4yVyJa1vTfGupCuiFNNqSR/lCEENrzS/MXBwXaVt9V5iuTmSyxLyyTbJSLZIE/X/qwh/yUjDj1UDNzDVOQv+PPicRan/fB+rfGFVaksxFlwMnSfdpIQOfIy1J2vSxRgOGougsIYEU9yUiXNpJvs2iiJ0/Bn7/QLo8YcazAjPeMc2ZNJuefRF62jGrvlfZY21+43kxuclC3T/CwhAsaM0dsYIk0VQcHOKTdrPWz6hL00LAorJDCBXVZgC54ZICOMQJml6ZiwIbFgscma7CNsY/sWuzYPPZH45COzgtgQ35/v+5oXNF1T0uPYNWsq3JVQa6/nCy6N6ZfKcytXi1sMoIqggHAoR3j/qu1CRwjzhI10anNKfr6nNzUJZI2cD/jdln03faPK3lY8pNMAPtBfa+8J0l9bVT9B/5tA61SGAQthg9H9Zo9lxRfydkzLVoyfgGGvTby7we/8k7ltemm935cI3+EckYLQG7zzH8qxSXlKixuPElGt3jCUuF7FQ5wEZm0uuDhuLZeCUS5jg=" # DOCKER_USER
+    - secure: "a9bcFcxwuaIh0Sg8Es+KDCansPw18Fyj+XG5SxNpE9UFFTJBY1dr73ZqtchPyJQhE7Z6VTLse7uY9tY1mIAIDUhP7O0gnz8tbSfBcQr/NJNF7nDFT/3+9xagOfwlWR3dS0o7H2+iVotx9RrZ9DIjMzrX7t7LOGtt+YMhMyPk5CrirXGwsndpZqaRS3NneE/U7c+iOUB/MMSjCqFWcgYK406FWlKZAb446dvKML8ylbVSluR8eSo+F5YB40DKaltoIr2Lo6MNCuyWSSsm1lR5L28LYM3OYcaM+Vhzje4QZKbZqUTUv2TTYWVUaP1sm/AvMGS2rVn8EpARDM+j05yAhxQxAfuAJkdULh9bkKXitPgjaTm/CNdUEJUcR24Rx5SIswXkmiacUZePG9MjyhKhxxR8yyTpDMH/LQH/IDRJDzIyUIT7mtwMhaGLno3Ow4cXgOD+5OOTN6FNLAZPj0UJz45PW6BvIlLeS1xq8goofMLWnEmpHGFHFl07LPBq8wLL/NLaI/5LvHoKTwhfqkycFHFCdiTah5hb2AAirVCs0I/82fKhysDUTnaJfUP/Aggk62f8m5ytc2ccWwqM5fTs1IQM23v3E/aT8A026XrKwVUWi587czPx9vPSm8YN8AqXTT96Q9MPZhRMhbL++6gqQlJ8pNQvH2XYtm2GDoGrfPk=" # DOCKER_PASS
+    - secure: "gLIVC+IlOPryiUgWNtffPJ8eHnBBOjaExGQA16Y0LwxFBsvEi1sXbCaf8dng8tep8OOtsBiEjYupiI8pYl56x5qt20IGu041aar4N81w+KA9hDqR4qAnxakUmtvrW7sRM8UDCstJ1ASBKm4au+KYUEn08c8TfzoRBws4DKowZxBKW1wiz8aW84MrHbIpQUtFOl1gPEnNSlL3pcWZ1RodpJ10dEq4q5RgAGIEeW/KWyhjc4vAdb9d86mHjLE3+TNj3nlAh49GJ2nsVFk67qgmoJ4njap/m7mX2PgdFVpU7Sx3BNkJmzBUQGPRYrJOX3QI321FEMutKKzmB8EoBIOUKbj63zOTSP/gWFLdsgL35ZH92woyBSX/8ZDnP2rN+fj1BKCrtLeNdCGc8myoiLe69waSAk0DXT/LeZuu3yO0LAuMKv3XH+gjTMqMyi8pWti8xIUAqnXJ2QC7IuvfsvlVVusFTsc+WqRKN90Blf7dga9M67RaReReTWuYEn9J8uD6TogYNG6P+WQGVKruAh1ZcDnKFxP0+YjH1ssy8zVxICh7z0UKGxZoPupurSkuBVqnrrmllOsLuscddH51JFisM06KLg9m1IFmSK+IDEB5Stp6W7rfOS0CCZ6QCQFBWMGOfj734Ey2SQt0bqvtvpXPd30023OvlvPlEgVcArtkNAw=" # AWS_SECRET_ACCESS_KEY
+    - secure: "2EN7D3swSjrnpNdHh2ZMCNtvsrS7u6ybpG2EnAcr+IcsRR7Ptb2ltcyOsED06WlgPXPZc4egIOUvw6zf274ndjvWgUxtWqKJa3Nqveqx3Ze+aXtlIe5pOtWkhAq14EC5VZHBilVLgiYe4TkRhXWlKA8D/GRLYctSacxH2NKSCRMVv8qo0Uz5oIm7nuz4GstfiiA9fz3ogmJdImDR12v+H6vGK5XisXbDZ7o8FQxeyEusMBgbnOkPsJUcpbDqrnC9lmOM1rJ6m1vg9QPB1wyEMhHVD7V6MH8H87ZdDS97+q0IKERh75rJ0JN5QV0hDyWlmZVRy+iODvGT2r698+S8gYajtfki2Kk/4hf7oiwwqR+c7we5kzUmlst3tdM93vojn7NmG53ZHzr5YAPRgaBsojSIliW8q34tMBgGID+/UZfnvqYIIuOX8fiUxU3HCODAnw8cI4fFCfL1AXdDDK/X0ncFAQ8gvi2iulvHJftPWMntj7h2zQwokX92SLDj6kv+w1k0gcafGaFtTfi9ZCePbCAZ9FRYUVpHpcaTCoyNx9aJJQXhV3yF71B+MRH+vd8WLjzlq9bLj6GCLqacc54xLeoRKvN7utozc/1kPfUAq/UrQ25TlKp8MFOAJew1uMKfiy8Sba5qHLd5HPkdetqn7eKsez9aXzabuWeiPgPk81s=" # CODACY_PROJECT_TOKEN
+    - AWS_ACCESS_KEY_ID=AKIAIAAFUBYS4GSVEFVQ
+    - AWS_DEFAULT_REGION=us-east-1 
+    - ECS_CLUSTER_NAME=kw-api
+    - COMMIT=${TRAVIS_COMMIT::8}
+    - DOCKER_IMAGE_NAME='kellerwilliams/kw-api'
+
+# Commands to be run before your environment runs.
+before_script:
+  - cp .env.travis .env
+  - mysql -u root -e 'CREATE DATABASE homestead_test;'
+  - composer self-update
+  - composer install --no-interaction 
+  - composer update codacy/coverage --dev 
+
+# Commands you want to run that will verify your build.
+script:
+  - php artisan migrate:install --no-interaction -v
+  - php artisan migrate:refresh --no-interaction -v
+  - php artisan db:seed --no-interaction -v
+  - php artisan queue:failed-table --no-interaction -v
+  - npm install
+  - gulp ng-admin
+  - vendor/bin/phpunit 
+#  - docker build -t $DOCKER_IMAGE_NAME .
+#  - if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME
+
+after_script:
+  - php vendor/bin/codacycoverage clover build/logs/clover.xml -v
+
+before_install:
+  - pip install --user awscli
+  - gem install cloudfront-invalidator
+  - "export DISPLAY=:99.0 && sh -e /etc/init.d/xvfb start"
+
+# allow_failures: Allow this build to fail under the specified environments.
+# fast_finish: If build fails do not continue trying to build, just stop.
+matrix:
+  allow_failures:
+    - php: 5.6
+    - php: hhvm
+  fast_finish: true
+
+#before_deploy: 
+
+deploy: 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID 
+    secret_access_key: $AWS_SECRET_ACCESS_KEY 
+    revision_type: github
+    application: Hydrogen-API
+    deployment_group: Development
+    region: us-east-1
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY_ID 
+    secret_access_key: $AWS_SECRET_ACCESS_KEY 
+    revision_type: github
+    application: Hydrogen-API
+    deployment_group: Production
+    region: us-east-1
+    on:
+      all_branches: true
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^v?[0-9].[0-9]*.*[0-9]*-*prod$"
+
+# A tag is a branch to Travis, so $TRAVIS_BRANCH == "master" does not apply below
+#after_deploy:
+#  - if ([ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_TAG" =~ ^v?[0-9].[0-9]*.*[0-9]$ ]]); then cloudfront-invalidator invalidate $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $DEV_CF_ID /* ; fi
+
+#after_success:
+#  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+#  - export REPO='kellerwilliams/kw-api'
+#  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+#  - docker build -f Dockerfile -t $REPO:$COMMIT .
+#  - docker tag $REPO:$COMMIT $REPO:$TAG
+##  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+#  - docker push $REPO
+#
+#  - if [[ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]]; then
+#    export ECS_SERVICE_NAME=dev;
+#    ecs-deploy -c $ECS_CLUSTER_NAME -n $ECS_SERVICE_NAME -i $DOCKER_IMAGE_NAME:$COMMIT ; fi
+#
+## A tag is a branch to Travis, so $TRAVIS_BRANCH == "master" does not apply below
+#  - if [[ $TRAVIS_PULL_REQUEST == 'false' && ! -z "$TRAVIS_TAG" ]]; then
+#    export ECS_SERVICE_NAME=prod;
+#    ecs-deploy -c $ECS_CLUSTER_NAME -n $ECS_SERVICE_NAME -i $DOCKER_IMAGE_NAME:$COMMIT ; fi
+

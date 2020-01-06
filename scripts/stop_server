@@ -1,0 +1,6 @@
+#!/bin/bash
+isExistApp = `pgrep httpd` 
+if [[ -n $ isExistApp ]]; then 
+    service nginx stop         
+    service php7.0-fpm stop         
+fi

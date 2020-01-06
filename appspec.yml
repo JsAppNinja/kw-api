@@ -1,0 +1,38 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/kw-api
+permissions:
+  - object: /var/www/kw-api
+    pattern: "**"
+    except:
+      - /var/www/kw-api/scripts/install_dependencies.sh
+      - /var/www/kw-api/scripts/start_server
+      - /var/www/kw-api/scripts/stop_server
+      - /var/www/kw-api/artisan
+    owner: www-data
+    group: www-data
+    mode: 644
+    type:
+      - file
+  - object: /var/www/kw-api
+    pattern: "**"
+    owner: www-data
+    group: www-data
+    mode: 755
+    type:
+      - directory
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 800
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 800
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root
